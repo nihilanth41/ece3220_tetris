@@ -68,26 +68,7 @@ Tetro_I::Tetro_I() {
 }
 Tetro_I::~Tetro_I() {
 }
-//	//Initialize to 0;
-//	for(int j=bound_height; j--;)
-//	{
-//		for(int i=0; i<bound_width; i++)
-//		{
-//			square[j][i] = 0;
-//		}
-//	}
-//
-//	// Vertical position 
-//	current_pos = 1;
-//	square[bound_height-1][bound_width-2] = 1;
-//	square[bound_height-2][bound_width-2] = 1;
-//	square[bound_height-3][bound_width-2] = 1;
-//	square[bound_height-4][bound_width-2] = 1;
-//}
-//
-//Tetro_I::~Tetro_I() {
-//}
-//
+
 void Tetro_I::rotate(void) {
 	if(current_pos == 1)
 	{
@@ -115,19 +96,34 @@ void Tetro_I::rotate(void) {
 	}
 		
 }
-//
-//void Tetro_I::print(void) {
-//	for(int j=bound_height; j--;)
-//	{
-//		printf("[");
-//		for(int i=0; i<bound_width; i++)
-//		{
-//			printf(" %d ", square[j][i]);
-//		}
-//		printf("]\n");
-//	}
-//	printf("\n");
-//}
+
+// "O"
+class Tetro_O : public Tetro_4 {
+	private:
+		int current_pos;
+	public:
+		Tetro_O();
+		void rotate(void);
+		~Tetro_O();
+};
+
+void Tetro_O::rotate() {
+	// "O" is the only tetromino that doesn't rotate
+	// Can still use this to, e.g. play a rotation sound
+}
+
+Tetro_O::Tetro_O() {
+	current_pos = 1;
+	square[2][2] = 1; 
+	square[2][1] = 1;
+	square[1][2] = 1;
+	square[1][1] = 1;
+}
+
+Tetro_O::~Tetro_O() {
+}
+
+
 
 int main(void) {
 
@@ -139,6 +135,11 @@ int main(void) {
 	t.print();
 	t.rotate();
 	t.print();
+
+	Tetro_O o = Tetro_O();
+	o.print();
+	o.rotate();
+	o.print();
 
 
 	return 0;
