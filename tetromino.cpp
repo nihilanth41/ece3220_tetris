@@ -44,6 +44,31 @@ Tetro_I::~Tetro_I() {
 }
 
 void Tetro_I::rotate(void) {
+	if(current_pos == 1)
+	{
+		current_pos = 2;
+		// Zero out old positions
+		square[bound_height-1][bound_width-2] = 0;
+		square[bound_height-2][bound_width-2] = 0;
+		square[bound_height-4][bound_width-2] = 0;
+		// Set new positions
+		square[bound_height-3][bound_width-4] = 1;
+		square[bound_height-3][bound_width-3] = 1;
+		square[bound_height-3][bound_width-1] = 1;
+	}
+	else if(current_pos == 2)
+	{
+		current_pos = 1;
+		// Zero out old positions
+		square[bound_height-3][bound_width-4] = 0;
+		square[bound_height-3][bound_width-3] = 0;
+		square[bound_height-3][bound_width-1] = 0;
+		// Set new positions
+		square[bound_height-1][bound_width-2] = 1;
+		square[bound_height-2][bound_width-2] = 1;
+		square[bound_height-4][bound_width-2] = 1;
+	}
+		
 }
 
 void Tetro_I::print(void) {
@@ -62,6 +87,8 @@ void Tetro_I::print(void) {
 int main(void) {
 
 	Tetro_I t = Tetro_I();
+	t.print();
+	t.rotate();
 	t.print();
 
 
