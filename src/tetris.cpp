@@ -5,6 +5,7 @@
 #include <termios.h>
 #include <stropts.h>
 #include <sys/ioctl.h>
+#include "tetromino.h"
 
 using namespace std;
 
@@ -45,49 +46,59 @@ void print_grid(void) {
 
 
 int main(int argc, char **argv) {
-	int i;
-	for(i=GRID_HEIGHT; i--;)
-	{
-		// len of block
-		grid1[i][5] = 1;
-		grid1[i][4] = 1;
-		if(i<GRID_HEIGHT)
-		{
-			grid1[i+1][5] = 1;
-			grid1[i+2][5] = 1;
-			grid1[i+3][5] = 0;
-			grid1[i+1][4] = 0;
-		}
-		print_grid();
-		sleep(1);
-	}
+//	int i;
+//	for(i=GRID_HEIGHT; i--;)
+//	{
+//		// len of block
+//		grid1[i][5] = 1;
+//		grid1[i][4] = 1;
+//		if(i<GRID_HEIGHT)
+//		{
+//			grid1[i+1][5] = 1;
+//			grid1[i+2][5] = 1;
+//			grid1[i+3][5] = 0;
+//			grid1[i+1][4] = 0;
+//		}
+//		print_grid();
+//		sleep(1);
+//	}
+//
+//	struct termios term_old, term_new;
+//	while(1)
+//	{
+//
+//		// Turn off echoing else fail
+//		if (tcgetattr (fileno (stdout), &term_old) != 0)
+//			return -1;
+//
+//		term_new = term_old;
+//		term_new.c_lflag &= ~ECHO;
+//		if (tcsetattr (fileno (stdout), TCSAFLUSH, &term_new) != 0)
+//			return -1;
+//
+//
+//		if( ! _kbhit() )
+//		{
+//			char val;
+//			scanf(" %c", &val);
+//			printf("Value pressed: %c\n", val);
+//			break;
+//		}
+//
+//	}
+//	// Restore echo
+//	(void) tcsetattr (fileno (stdout), TCSAFLUSH, &term_old);
+//	fflush(stdout);
+	Tetro_I t = Tetro_I();
+	t.print();
+	t.rotate();
+	t.print();
 
-	struct termios term_old, term_new;
-	while(1)
-	{
+	Tetro_O o = Tetro_O();
+	o.print();
+	o.rotate();
+	o.print();
 
-		// Turn off echoing else fail
-		if (tcgetattr (fileno (stdout), &term_old) != 0)
-			return -1;
-
-		term_new = term_old;
-		term_new.c_lflag &= ~ECHO;
-		if (tcsetattr (fileno (stdout), TCSAFLUSH, &term_new) != 0)
-			return -1;
-
-
-		if( ! _kbhit() )
-		{
-			char val;
-			scanf(" %c", &val);
-			printf("Value pressed: %c\n", val);
-			break;
-		}
-
-	}
-	// Restore echo
-	(void) tcsetattr (fileno (stdout), TCSAFLUSH, &term_old);
-	fflush(stdout);
 
 	usleep(2000);
 	return 0;
