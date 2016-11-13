@@ -6,44 +6,11 @@
 #include <stropts.h>
 #include <sys/ioctl.h>
 #include "tetromino.h"
+#include "grid.h"
 
 using namespace std;
 
 int _kbhit(void);
-
-// Standard size
-#define GRID_WIDTH 10
-#define GRID_HEIGHT 20
-
-int grid1[GRID_WIDTH][GRID_HEIGHT] = { 0 };
-int grid2[GRID_WIDTH][GRID_HEIGHT] = { 0 };
-
-void print_grid(void) {
-#define ANSI_COLOR_CYAN    "\x1b[36m"
-#define ANSI_COLOR_RESET   "\x1b[0m"
-	int i, j;
-	// Iterate backwards i.e. top to bottom
-	for(j=GRID_HEIGHT; j--;)
-	{
-
-		printf("[");
-		// Iterate forwards i.e. left to right
-		for(i=0; i<GRID_WIDTH; i++)
-		{
-			{
-
-				if(grid1[j][i] == 1)
-					printf(ANSI_COLOR_CYAN " %d " ANSI_COLOR_RESET, grid1[j][i]);
-				else
-					printf(" %d ", grid1[j][i]);
-			}
-		}
-		printf("]\n");
-	}
-	// Go up 
-	printf("\033[20A");
-}
-
 
 int main(int argc, char **argv) {
 //	int i;
@@ -90,14 +57,11 @@ int main(int argc, char **argv) {
 //	(void) tcsetattr (fileno (stdout), TCSAFLUSH, &term_old);
 //	fflush(stdout);
 	Tetro_I t = Tetro_I();
-	t.print();
-	t.rotate();
-	t.print();
 
 	Tetro_O o = Tetro_O();
-	o.print();
-	o.rotate();
-	o.print();
+
+	Grid g = Grid();
+	g.print();
 
 
 	usleep(2000);

@@ -7,6 +7,8 @@
 class Tetromino {
 	public:
 		virtual void rotate()=0;
+		int xpos;
+		int ypos;
 };
 
 // Tetrominos with bounding square 4^2
@@ -17,6 +19,8 @@ class Tetro_4 : public Tetromino {
 		static const int bound_width = 4;
 		int square[bound_height][bound_width];
 	public:
+		// The top left corner of the bounding square
+		int xpos, ypos;
 		void print(void);
 		Tetro_4();
 		~Tetro_4();

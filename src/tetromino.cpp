@@ -30,6 +30,9 @@ Tetro_4::~Tetro_4() {
 Tetro_I::Tetro_I() {
 	// Vertical position 
 	current_pos = 1;
+	// Positions in the Grid
+	xpos = 0;
+	ypos = 0;
 	square[bound_height-1][bound_width-2] = 1;
 	square[bound_height-2][bound_width-2] = 1;
 	square[bound_height-3][bound_width-2] = 1;
