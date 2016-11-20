@@ -27,6 +27,34 @@ Tetro_4::Tetro_4() {
 Tetro_4::~Tetro_4() {
 }
 
+void Tetro_4::setxpos(int x) {
+	xpos = x;
+}
+
+void Tetro_4::setypos(int y) {
+	ypos = y;
+}
+
+int Tetro_4::getxpos(void) {
+	return xpos;
+}
+
+int Tetro_4::getypos(void) {
+	return ypos;
+}
+
+int Tetro_4::getboundheight(void) {
+	return bound_height;
+}
+
+int Tetro_4::getboundwidth(void) {
+	return bound_width;
+}
+
+int Tetro_4::getsquare(int y, int x) {
+	return square[y][x];
+}
+
 Tetro_I::Tetro_I() {
 	// Vertical position 
 	current_pos = 1;

@@ -41,19 +41,18 @@ void Grid::print(void) {
 
 void Grid::addTetromino(Tetromino *t) 
 {
-	curr_tetromino = t;
 	// Index of the top left corner xpos
-	curr_tetromino->xpos = 3 
+	t->setxpos(3);
 	// Index of top left corner ypos
-	curr_tetromino->ypos = grid_height;
+	t->setypos(grid_height);
 	// Iterate the tetromino bounding square
 	// Place each element into the position on the top center Grid
-	for(int j=curr_tetromino->bound_height; j--;)
+	for(int j=t->getboundheight(); j--;)
 	{
-		for(int i=0; i<curr_tetromino->bound_width; i++)
+		for(int i=0; i<t->getboundwidth(); i++)
 		{
 			
-			grid[curr_tetromino->ypos][curr_tetromino->xpos] = curr_tetromino->square[j][i];
+			grid[t->getypos()][t->getxpos()] = t->getsquare(j, i);
 		}
 	}
 }

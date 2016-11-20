@@ -63,6 +63,9 @@ int main(int argc, char **argv) {
 	Grid g = Grid();
 	g.print();
 
+	g.addTetromino(&o);
+	g.print();
+
 
 	usleep(2000);
 	return 0;
