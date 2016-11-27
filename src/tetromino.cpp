@@ -1,115 +1,36 @@
 #include "tetromino.h"
 
-void Tetro_4::print(void) {
-	for(int j=bound_height; j--;)
-	{
-		printf("[");
-		for(int i=0; i<bound_width; i++)
-		{
-			printf(" %d ", square[j][i]);
-		}
-		printf("]\n");
-	}
-	printf("\n");
+/*
+  Params:
+    {
+        piece -- Piece to draw {0 - 6}
+        rotation -- Rotation of piece {0 - 3}
+        x -- horizontal position
+        y -- vertical position
+    }
+  Returns:
+    Type of block:
+        {
+            0 => No block
+            1 => Normal block
+            2 => Pivot point
+        }
+*/
+
+int Tetromino::getType(int piece, int rotation, int x, int y)
+{
+    return mPieces[piece][rotation][x][y];
 }
 
-Tetro_4::Tetro_4() {
-	//Initialize to 0;
-	for(int j=bound_height; j--;)
-	{
-		for(int i=0; i<bound_width; i++)
-		{
-			square[j][i] = 0;
-		}
-	}
+/* Returns horizontal displacement that should be applied to piece */
+int Tetromino::getInitialXPos(int piece, int rotation)
+{
+	return mPiecesInitialPosition[piece][rotation][0];
 }
 
-Tetro_4::~Tetro_4() {
-}
-
-void Tetro_4::setxpos(int x) {
-	xpos = x;
-}
-
-void Tetro_4::setypos(int y) {
-	ypos = y;
-}
-
-int Tetro_4::getxpos(void) {
-	return xpos;
-}
-
-int Tetro_4::getypos(void) {
-	return ypos;
-}
-
-int Tetro_4::getboundheight(void) {
-	return bound_height;
-}
-
-int Tetro_4::getboundwidth(void) {
-	return bound_width;
-}
-
-int Tetro_4::getsquare(int y, int x) {
-	return square[y][x];
-}
-
-Tetro_I::Tetro_I() {
-	// Vertical position 
-	current_pos = 1;
-	// Positions in the Grid
-	xpos = 0;
-	ypos = 0;
-	square[bound_height-1][bound_width-2] = 1;
-	square[bound_height-2][bound_width-2] = 1;
-	square[bound_height-3][bound_width-2] = 1;
-	square[bound_height-4][bound_width-2] = 1;
-}
-Tetro_I::~Tetro_I() {
-}
-
-void Tetro_I::rotate(void) {
-	if(current_pos == 1)
-	{
-		current_pos = 2;
-		// Zero out old positions
-		square[bound_height-1][bound_width-2] = 0;
-		square[bound_height-2][bound_width-2] = 0;
-		square[bound_height-4][bound_width-2] = 0;
-		// Set new positions
-		square[bound_height-3][bound_width-4] = 1;
-		square[bound_height-3][bound_width-3] = 1;
-		square[bound_height-3][bound_width-1] = 1;
-	}
-	else if(current_pos == 2)
-	{
-		current_pos = 1;
-		// Zero out old positions
-		square[bound_height-3][bound_width-4] = 0;
-		square[bound_height-3][bound_width-3] = 0;
-		square[bound_height-3][bound_width-1] = 0;
-		// Set new positions
-		square[bound_height-1][bound_width-2] = 1;
-		square[bound_height-2][bound_width-2] = 1;
-		square[bound_height-4][bound_width-2] = 1;
-	}
-		
-}
-
-void Tetro_O::rotate() {
-	// "O" is the only tetromino that doesn't rotate
-	// Can still use this to, e.g. play a rotation sound
-}
-
-Tetro_O::Tetro_O() {
-	current_pos = 1;
-	square[2][2] = 1; 
-	square[2][1] = 1;
-	square[1][2] = 1;
-	square[1][1] = 1;
-}
-
-Tetro_O::~Tetro_O() {
+/* Returns vertical displacement that should be applied to piece */
+int Tetromino::getInitialYPos(int piece, int rotation)
+{
+	return mPiecesInitialPosition[piece][rotation][1];
 }
 

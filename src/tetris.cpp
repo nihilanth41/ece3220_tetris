@@ -6,7 +6,6 @@
 #include <stropts.h>
 #include <sys/ioctl.h>
 #include "tetromino.h"
-#include "grid.h"
 
 using namespace std;
 
@@ -56,18 +55,18 @@ int main(int argc, char **argv) {
 //	// Restore echo
 //	(void) tcsetattr (fileno (stdout), TCSAFLUSH, &term_old);
 //	fflush(stdout);
-	Tetro_I t = Tetro_I();
-
-	Tetro_O o = Tetro_O();
-
-	Grid g = Grid();
-	g.print();
-
-	g.addTetromino(&o);
-	g.print();
-
-
-	usleep(2000);
+//	Tetro_I t = Tetro_I();
+//
+//	Tetro_O o = Tetro_O();
+//
+//	Grid g = Grid();
+//	g.print();
+//
+//	g.addTetromino(&o);
+//	g.print();
+//
+//
+//	usleep(2000);
 	return 0;
 }
 
