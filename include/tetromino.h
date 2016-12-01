@@ -5,9 +5,9 @@
 
 class Tetromino {
 	public:
-        int getType(int piece, int rotation, int x, int y);
-        int getInitialXPos(int piece, int rotation);
-        int getInitialYPos(int piece, int rotation);
+        int GetBlockType(int piece, int rotation, int x, int y);
+        int GetXInitialPosition(int piece, int rotation);
+        int GetYInitialPosition(int piece, int rotation);
 };
        
 // Pieces definition

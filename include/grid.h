@@ -15,7 +15,7 @@
 class Grid { 
 	public:
         // Constructor
-        Grid(Tetromino *pTetro, int pScreenHeight);
+        Grid(Tetromino *pPieces, int pScreenHeight);
 
         int GetXPosInPixels         (int pPos);
         int GetYPosInPixels         (int pPos);

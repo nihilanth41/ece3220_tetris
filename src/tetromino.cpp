@@ -17,19 +17,19 @@
         }
 */
 
-int Tetromino::getType(int piece, int rotation, int x, int y)
+int Tetromino::GetBlockType(int piece, int rotation, int x, int y)
 {
     return mPieces[piece][rotation][x][y];
 }
 
 /* Returns horizontal displacement that should be applied to piece */
-int Tetromino::getInitialXPos(int piece, int rotation)
+int Tetromino::GetXInitialPosition(int piece, int rotation)
 {
 	return mPiecesInitialPosition[piece][rotation][0];
 }
 
 /* Returns vertical displacement that should be applied to piece */
-int Tetromino::getInitialYPos(int piece, int rotation)
+int Tetromino::GetYInitialPosition(int piece, int rotation)
 {
 	return mPiecesInitialPosition[piece][rotation][1];
 }

@@ -1,10 +1,13 @@
 #include "grid.h"
 #include "tetromino.h"
 
-Grid::Grid(Tetromino *pTetro, int pScreenHeight) {
-    
-    
-
+Grid::Grid(Tetromino *pPieces, int pScreenHeight) {
+	// Get the screen height
+	mScreenHeight = pScreenHeight;
+	// Get the pointer to the pieces class
+	mPieces = pPieces;
+	//Init the board blocks with free positions
+	InitGrid();
 }
 
 void Grid::InitGrid(void) {
@@ -20,7 +23,7 @@ void Grid::InitGrid(void) {
 
 void Grid::StorePiece(int x, int y, int piece, int rotation) {
 /* Store each block of the specified piece onto the board */
-    for(int i1=x, i2=0; i1<x+TETRO_BOUND; i1++, i2++;)
+    for(int i1=x, i2=0; i1<x+TETRO_BOUND; i1++, i2++)
     {
         for(int j1=y, j2=0; j1<y+TETRO_BOUND; j1++, j2++)
         {
@@ -61,6 +64,7 @@ void Grid::DeleteLine (int pY) {
         {
             mGrid[i][j] = mGrid[i][j-1];
         }
+    } 
 }
 
 void Grid::DeletePossibleLines(void) {
@@ -78,7 +82,7 @@ void Grid::DeletePossibleLines(void) {
 	}
 }
 
-void Grid::IsFreeBlock(int pX, int pY) {
+bool Grid::IsFreeBlock(int pX, int pY) {
 	if(mGrid[pX][pY] == POS_FREE)
 		return true;
 	else

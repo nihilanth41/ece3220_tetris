@@ -7,10 +7,10 @@ LDIR =../lib
 
 LIBS=-lm
 
-_DEPS = tetromino.h
+_DEPS = tetromino.h grid.h game.h
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 
-_OBJ = tetromino.o tetris.o 
+_OBJ = tetromino.o grid.o game.o tetris.o 
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
 
