@@ -3,9 +3,14 @@
 #include <iostream>
 #include "tetromino.h"
 
-#define GRID_WIDTH 10
-#define GRID_HEIGHT 20
-#define TETRO_BOUND 5 // number of blocks in the tetromino bounding square
+#define BOARD_LINE_WIDTH 6          // Width of each of the two lines that delimit the board
+#define BLOCK_SIZE 16               // Width and Height of each block of a piece
+#define BOARD_POSITION 320          // Center position of the board from the left of the screen
+#define GRID_WIDTH 10              // Board width in blocks
+#define GRID_HEIGHT 20             // Board height in blocks
+#define MIN_VERTICAL_MARGIN 20      // Minimum vertical margin for the board limit     
+#define MIN_HORIZONTAL_MARGIN 20    // Minimum horizontal margin for the board limit
+#define TETRO_BOUND 5              // Number of horizontal and vertical blocks of a matrix piece
 
 class Grid { 
 	public:
@@ -23,8 +28,9 @@ class Grid {
     private:
         enum { POS_FREE, POS_FILLED };          // POS_FREE = free position of the board; POS_FILLED = filled position of the board
         int mGrid [GRID_WIDTH][GRID_HEIGHT]; // Board that contains the pieces
-        Pieces *mPieces;
+        Tetromino *mPieces;
         int mScreenHeight;
+
         void InitGrid();
         void DeleteLine (int pY);
 };
