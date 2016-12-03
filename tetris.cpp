@@ -50,43 +50,42 @@ void print_grid(void) {
 
 }
 
+
+
+
 class Game{
 
-public: void init_Game(){
-		char userInput;
-
-		int shape [4][5] = {0,0,0,0,0,	
-				    0,1,1,0,0,
-				    0,1,1,0,0,
-				    0,0,0,0,0		
-				};
-		
-		for(int i=GRID_HEIGHT; i--;)
-                { 
-		    // len of block
-                    grid1[i][5] = 1;
-                    grid1[i][4] = 1;
-                        
-		    grid2[i][2] = 2;
-		    grid2[i][2] = 2;
-
-			if(i<GRID_HEIGHT)
-                        {
-                           grid1[i+1][5] = 1;
-                           grid1[i+2][5] = 1;
-			   grid1[i+3][5] = 0;
-		   	   grid1[i+1][4] = 0;
-                       }
-                        
-			print_grid();
-			sleep(2);
-		
-			
-		}
+public: 
+	Grid* grid;
+	Shape* shapes;
+	void draw();
+	void init_Game(){	
 	
           }
 };
 
+class Shape{
+
+public: Shape();
+	vector<vector<vector<vector<int>>>> mShape;
+
+
+};
+
+Shape::Shape(){
+
+	mShapes = {	
+
+	}	
+
+}
+
+
+class Grid{
+public:	Grid();
+	vector<vector<int>> mGrid;
+
+}
 
 int main(int argc, char **argv) {
 	int i;
@@ -102,7 +101,8 @@ int main(int argc, char **argv) {
 	cout<<"    +       ++++++          +       +++++++++   ++   +++++++++"<<endl;
 	cout<<"    +       +               +       +    +      ++           +"<<endl;
 	cout<<"    +       +++++++++       +       +       +   ++   +++++++++"<<endl;
-	clearScreen();
+	
+clearScreen();
 
 	sleep(1);
 
@@ -120,22 +120,7 @@ int main(int argc, char **argv) {
 		game.init_Game();	
 	}
 	else if(userChoice == 2){
-		vector scores<int>;
-		FILE* fp = fopen("highscores.txt", "r");	
-		while(fscanf(fp, "%d", &temp)){
-			scores.push_back(temp);
-
-		}
-		clearScreen();
-
-		cout<<"High Scores\n"<<endl;
-		
-		for(int x: scores){
-			cout<<x<<endl;
-		}
-		close(fp);
 	}
-
 	else if(userChoice == 3){
 
 	}
