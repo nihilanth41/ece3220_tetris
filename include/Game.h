@@ -6,11 +6,18 @@
 
 class Game {
 	public: 
-		Grid *grid;
-		Shape *shapes;
-		void draw();
+		Game();
+		Grid grid;
+		Shapes shapes;
+		void Draw();
 		void init_game();
-}
+	private:
+		// Vars for shape
+		int shapeType;
+		int shapeRotation;
+		// Shape coordinates
+		int sX, sY;
+};
 
 
 #endif
