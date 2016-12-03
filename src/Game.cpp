@@ -13,15 +13,12 @@ void Game::init_game(void) {
 	// Setup RNG
 	srand(time(NULL));
 	// Get random shape
-	// Random number from 0-6
 	shapeType = rand() % 7;
-	
-// Get random rotation
+	// Get random rotation
 	shapeRotation = rand() % 4;
-	
 	// Set initial position of shape
 	sX = 4;
-	sY = 18;
+	sY = 14;
 }
 
 void Game::Draw(void) {

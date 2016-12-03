@@ -8,15 +8,21 @@
 using namespace std;
 
 int main(int argc, char **argv) {
-
+	
+	// Initialize Game object 
 	Game game;
+	// Get random shape
+	game.init_game();
+
+	// Initialize a Grid
+	// Add the shape to the Grid
 	Grid grid;
-	grid.AddShape(1, 1, 4, 18);
+	grid.AddShape(game.shapeType, game.shapeRotation, game.sX, game.sY);
+
 	// Give game a grid to work with
 	game.g = &grid;
 
-	// Get random shape
-	game.init_game();
+
 
 	game.Draw();
 	return 0;
