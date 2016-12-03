@@ -3,9 +3,9 @@
 #include <unistd.h>
 #include <sys/select.h>
 #include <termios.h>
-#include <stropts.h>
+//#include <stropts.h>
 #include <sys/ioctl.h>
-
+#include <vector>
 using namespace std;
 
 int _kbhit(void);
@@ -16,6 +16,12 @@ int _kbhit(void);
 
 int grid1[GRID_WIDTH][GRID_HEIGHT] = { 0 };
 int grid2[GRID_WIDTH][GRID_HEIGHT] = { 0 };
+
+void clearScreen(void){
+	cout<<"\n\n\n\n\n\n\n\n\n\n\n\n\n\n"<<endl;
+}
+
+
 
 void print_grid(void) {
 #define ANSI_COLOR_CYAN    "\x1b[36m"
@@ -41,28 +47,106 @@ void print_grid(void) {
 	}
 	// Go up 
 	printf("\033[20A");
+
 }
+
+class Game{
+
+public: void init_Game(){
+		char userInput;
+
+		int shape [4][5] = {0,0,0,0,0,	
+				    0,1,1,0,0,
+				    0,1,1,0,0,
+				    0,0,0,0,0		
+				};
+		
+		for(int i=GRID_HEIGHT; i--;)
+                { 
+		    // len of block
+                    grid1[i][5] = 1;
+                    grid1[i][4] = 1;
+                        
+		    grid2[i][2] = 2;
+		    grid2[i][2] = 2;
+
+			if(i<GRID_HEIGHT)
+                        {
+                           grid1[i+1][5] = 1;
+                           grid1[i+2][5] = 1;
+			   grid1[i+3][5] = 0;
+		   	   grid1[i+1][4] = 0;
+                       }
+                        
+			print_grid();
+			sleep(2);
+		
+			
+		}
+	
+          }
+};
 
 
 int main(int argc, char **argv) {
 	int i;
-	for(i=GRID_HEIGHT; i--;)
-	{
-		// len of block
-		grid1[i][5] = 1;
-		grid1[i][4] = 1;
-		if(i<GRID_HEIGHT)
-		{
-			grid1[i+1][5] = 1;
-			grid1[i+2][5] = 1;
-			grid1[i+3][5] = 0;
-			grid1[i+1][4] = 0;
+	//vector scores<int>;
+	int temp;
+	int userChoice;	
+
+
+
+
+	cout<<"+++++++++   +++++++++   +++++++++   +++++++++   ++   +++++++++"<<endl;
+	cout<<"    +       +               +       +       +   ++   +"<<endl;
+	cout<<"    +       ++++++          +       +++++++++   ++   +++++++++"<<endl;
+	cout<<"    +       +               +       +    +      ++           +"<<endl;
+	cout<<"    +       +++++++++       +       +       +   ++   +++++++++"<<endl;
+	clearScreen();
+
+	sleep(1);
+
+	cout<<"Main Menu: Select one of the following\n"<<endl;
+	cout<<"1 Play Game"<<endl;
+	cout<<"2 Highscores"<<endl;
+	cout<<"3 Settings"<<endl;
+	cout<<"4 Quit"<<endl;
+
+	cin>>userChoice;
+
+	if(userChoice==1){
+		clearScreen();
+		Game game;
+		game.init_Game();	
+	}
+	else if(userChoice == 2){
+		vector scores<int>;
+		FILE* fp = fopen("highscores.txt", "r");	
+		while(fscanf(fp, "%d", &temp)){
+			scores.push_back(temp);
+
 		}
-		print_grid();
-		sleep(1);
+		clearScreen();
+
+		cout<<"High Scores\n"<<endl;
+		
+		for(int x: scores){
+			cout<<x<<endl;
+		}
+		close(fp);
 	}
 
+	else if(userChoice == 3){
+
+	}
+	else if(userChoice == 4){
+		return 0;
+	}
+
+	clearScreen();
+
 	struct termios term_old, term_new;
+	
 	while(1)
 	{
 
@@ -96,7 +180,6 @@ int main(int argc, char **argv) {
 	/*
  TODO:
  Need to make UML diagram/flowchart, should help with designing classes
-
 Initialize an empty grid, background, that will hold the blocks that have already fallen
 Initialize a grid, foreground, to hold current falling block
 Generate a tetromino and place it initially in the top-center of the foreground
