@@ -53,39 +53,39 @@ void print_grid(void) {
 
 
 
-class Game{
+//class Game{
 
-public: 
-	Grid* grid;
-	Shape* shapes;
-	void draw();
-	void init_Game(){	
-	
-          }
-};
-
-class Shape{
-
-public: Shape();
-	vector<vector<vector<vector<int>>>> mShape;
-
-
-};
-
-Shape::Shape(){
-
-	mShapes = {	
-
-	}	
-
-}
-
-
-class Grid{
-public:	Grid();
-	vector<vector<int>> mGrid;
-
-}
+//public: 
+//	Grid* grid;
+//	Shape* shapes;
+//	void draw();
+//	void init_Game(){	
+//	
+//          }
+//};
+//
+//class Shape{
+//
+//public: Shape();
+//	vector<vector<vector<vector<int>>>> mShape;
+//
+//
+//};
+//
+//Shape::Shape(){
+//
+//	mShapes = {	
+//
+//	}	
+//
+//}
+//
+//
+//class Grid{
+//public:	Grid();
+//	vector<vector<int>> mGrid;
+//
+//}
 
 int main(int argc, char **argv) {
 	int i;
@@ -117,7 +117,7 @@ clearScreen();
 	if(userChoice==1){
 		clearScreen();
 		Game game;
-		game.init_Game();	
+		//game.init_Game();	
 	}
 	else if(userChoice == 2){
 	}
