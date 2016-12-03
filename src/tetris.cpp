@@ -22,9 +22,15 @@ int main(int argc, char **argv) {
 	// Give game a grid to work with
 	game.g = &grid;
 
+	while(game.sY > 0)
+	{
+		game.Draw();
+		game.sY -= 1;
+		// Need some kind of isMovementPossible(), maybe inside the MoveShape() method.
+		grid.MoveShape(game.shapeType, game.shapeRotation, game.sX, game.sY, game.sX, game.sY-1);
+		sleep(1);
+	}
 
-
-	game.Draw();
 	return 0;
 }
 

@@ -35,5 +35,6 @@ void Game::Draw(void) {
 	printf("\033[20A");
 }
 
+		void moveShape(int type, int rotation, int x, int y);
 
 

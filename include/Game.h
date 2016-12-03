@@ -8,12 +8,14 @@ class Game {
 	public: 
 		Game();
 		Grid *g;
+		// Draw grid to screen
 		void Draw();
+		// Setup RNG, Init Random Shape
 		void init_game();
 		// Vars for shape
 		int shapeType;
 		int shapeRotation;
-		// Shape coordinates
+		// Coordinates for shape
 		int sX, sY;
 };
 
