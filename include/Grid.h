@@ -1,6 +1,7 @@
 #ifndef __GRID_H
 #define __GRID_H
 #include <vector>
+#include "Shapes.h"
 
 using namespace std;
 
@@ -11,6 +12,9 @@ class Grid {
 	public:
 		vector<vector<int>> mGrid;
 		Grid(); 
+		void AddShape(int type, int rotation, int x, int y);
+		Shapes shapes;
 };
+
 
 #endif

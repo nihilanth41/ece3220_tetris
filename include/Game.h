@@ -7,11 +7,9 @@
 class Game {
 	public: 
 		Game();
-		Grid grid;
-		Shapes shapes;
+		Grid *g;
 		void Draw();
 		void init_game();
-	private:
 		// Vars for shape
 		int shapeType;
 		int shapeRotation;
