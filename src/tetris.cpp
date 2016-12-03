@@ -1,8 +1,8 @@
 #include <iostream> 
 #include <cstdio>
 #include <unistd.h>
-#include <sys/ioctl.h>
 #include <vector>
+#include <termios.h>
 using namespace std;
 
 int _kbhit(void);
@@ -113,7 +113,7 @@ clearScreen();
 
 	if(userChoice==1){
 		clearScreen();
-		Game game;
+//		Game game;
 		//game.init_Game();	
 	}
 	else if(userChoice == 2){
