@@ -1,9 +1,6 @@
 #include <iostream> 
 #include <cstdio>
 #include <unistd.h>
-#include <sys/select.h>
-#include <termios.h>
-//#include <stropts.h>
 #include <sys/ioctl.h>
 #include <vector>
 using namespace std;
@@ -165,35 +162,13 @@ clearScreen();
 	/*
  TODO:
  Need to make UML diagram/flowchart, should help with designing classes
-Initialize an empty grid, background, that will hold the blocks that have already fallen
-Initialize a grid, foreground, to hold current falling block
+Initialize an empty grid, background, that will hold the blocks that have already fallenInitialize a grid, foreground, to hold current falling block
 Generate a tetromino and place it initially in the top-center of the foreground
 Decrement the y-pos of the tetromino in grid2 to simulate falling effect
 Want to compare the future position of the bottom-most row *in each column* of the falling tetromino WITH the top-most row *in each column* of grid fallen blocks
 	(Left->right, top->bottom)
 	Can we do this left to right?
 */
-/**
- Linux (POSIX) implementation of _kbhit().
- Morgan McGuire, morgan@cs.brown.edu
- */
 
 
-int _kbhit() {
-    static const int STDIN = 0;
-    static bool initialized = false;
 
-    if (! initialized) {
-        // Use termios to turn off line buffering
-        termios term;
-        tcgetattr(STDIN, &term);
-        term.c_lflag &= ~ICANON;
-        tcsetattr(STDIN, TCSANOW, &term);
-        setbuf(stdin, NULL);
-        initialized = true;
-    }
-
-    int bytesWaiting;
-    ioctl(STDIN, FIONREAD, &bytesWaiting);
-    return bytesWaiting;
-}
