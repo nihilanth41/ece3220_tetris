@@ -17,7 +17,7 @@ int main(int argc, char **argv) {
 	// Initialize a Grid
 	// Add the shape to the Grid
 	Grid grid;
-	grid.AddShape(game.shapeType, game.shapeRotation, game.sX, game.sY);
+	grid.addShape(game.shapeType, game.shapeRotation, game.sX, game.sY);
 
 	// Give game a grid to work with
 	game.g = &grid;
@@ -32,7 +32,7 @@ int main(int argc, char **argv) {
 		// Translate shape according to user input and/or sleep.
 		for(int i=0; i<5; i++)
 		{
-			grid.MoveShape(game.shapeType, game.shapeRotation, game.sX, game.sY, game.sX, game.sY-1);
+			grid.moveShape(game.shapeType, game.shapeRotation, game.sX, game.sY, game.sX, game.sY-1);
 			if( _kbhit() )
 			{
 				// Get user input
@@ -44,14 +44,14 @@ int main(int argc, char **argv) {
 							  //left
 							  //ifMovementPossible() { 
 							  // maybe instead of clearing the old position we just clear the entire grid and redraw?
-							  grid.MoveShape(game.shapeType, game.shapeRotation, game.sX, game.sY, game.sX--, game.sY);
+							  grid.moveShape(game.shapeType, game.shapeRotation, game.sX, game.sY, game.sX--, game.sY);
 							  game.Draw();
 							  break;
 						  }
 					case 'k': {
 							  //right
 							  //ifMovementPossible() { 
-							  grid.MoveShape(game.shapeType, game.shapeRotation, game.sX, game.sY, game.sX++, game.sY);
+							  grid.moveShape(game.shapeType, game.shapeRotation, game.sX, game.sY, game.sX++, game.sY);
 							  game.Draw();
 							  break;
 						  }

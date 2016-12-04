@@ -6,7 +6,7 @@ Grid::Grid() {
 	mGrid.resize(GRID_WIDTH, vector<int>(GRID_HEIGHT, 0));
 }
 
-void Grid::AddShape(int type, int rotation, int x, int y) {
+void Grid::addShape(int type, int rotation, int x, int y) {
 	int i1, i2;
 	int j1, j2;
 	// 
@@ -22,7 +22,7 @@ void Grid::AddShape(int type, int rotation, int x, int y) {
 	}
 }
 
-void Grid::MoveShape(int type, int rotation, int oldx, int oldy, int x, int y) {
+void Grid::moveShape(int type, int rotation, int oldx, int oldy, int x, int y) {
 	// if(movementIsPossible())
 	int i1, i2;
 	int j1, j2;
