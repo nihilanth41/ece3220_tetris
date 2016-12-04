@@ -24,13 +24,52 @@ int main(int argc, char **argv) {
 
 	while(game.sY > 0)
 	{
+		// Draw screen
 		game.Draw();
+		// Decrement y value (if possible)
 		game.sY -= 1;
 		// Need some kind of isMovementPossible(), maybe inside the MoveShape() method.
-		grid.MoveShape(game.shapeType, game.shapeRotation, game.sX, game.sY, game.sX, game.sY-1);
-		sleep(1);
+		// Translate shape according to user input and/or sleep.
+		for(int i=0; i<5; i++)
+		{
+			grid.MoveShape(game.shapeType, game.shapeRotation, game.sX, game.sY, game.sX, game.sY-1);
+			if( _kbhit() )
+			{
+				// Get user input
+				char c;  
+				scanf(" %c" , &c);
+				switch(c)
+				{
+					case 'j': {
+							  //left
+							  //ifMovementPossible() { 
+							  // maybe instead of clearing the old position we just clear the entire grid and redraw?
+							  grid.MoveShape(game.shapeType, game.shapeRotation, game.sX, game.sY, game.sX--, game.sY);
+							  game.Draw();
+							  break;
+						  }
+					case 'k': {
+							  //right
+							  //ifMovementPossible() { 
+							  grid.MoveShape(game.shapeType, game.shapeRotation, game.sX, game.sY, game.sX++, game.sY);
+							  game.Draw();
+							  break;
+						  }
+					case 'q':
+					case 'Q': {
+							  // Clear screen
+							  // From http://stackoverflow.com/a/7660837
+							  printf("\e[1;1H\e[2J");
+							  exit(0);
+						  }
+					default: break;
+				}
+			}
+			// 200ms * 5 = 1 sec
+			usleep(200000);
+		}
 	}
 
 	return 0;
-}
+} 
 
