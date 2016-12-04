@@ -1,5 +1,7 @@
 #include "Grid.h"
 #include "Shapes.h"
+#include <unistd.h>
+#include <cstdio>
 
 Grid::Grid() {
 	// Initalize Grid to 0
@@ -55,32 +57,32 @@ bool Grid::isMovementPossible(int type, int rotation, int x, int y){
         	 {  
             		// Check if the piece is outside the limits of the board
           	  	if ( i1 < 0 || i1 > GRID_WIDTH  - 1 || j1 > GRID_HEIGHT - 1)
-            {
-                if (shapes.mShapes[type][rotation][i2][j2] != 0)
-                    return 0;      
-            }
- 
-            // Check if the piece have collisioned with a block already stored in the map
-            if (j1 >= 0)
-            {
-                if ((shapes.mShapes[type][rotation][i2][j2] != 0) && (mGrid[i1][j1] != 0)){
-                    return false;
+            		{
+                		if (shapes.mShapes[type][rotation][i2][j2] != 0)
+                    			return false;      
+            		}
+
+		//	if( (shapes.mShapes[type][rotation][i2][j2] != 0) && (mGrid[i1][j1] != 0) )
+		//	{
+		//		return false;
+		//	}
+			
 		}
-            }
         }
-    }
- 
-    // No collision
-    return true;
-
-
-
-
-
-
-
-
-
-
+	// No collision
+	return true;
 }
+ 
+
+
+
+
+
+
+
+
+
+
+
+
 

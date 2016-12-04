@@ -42,17 +42,33 @@ int main(int argc, char **argv) {
 				{
 					case 'j': {
 							  //left
-							  //ifMovementPossible() { 
+							  if(grid.isMovementPossible(game.shapeType, game.shapeRotation, game.sX-1, game.sY)) { 
 							  // maybe instead of clearing the old position we just clear the entire grid and redraw?
-							  game.sX -= 1;
-							  grid.moveShape(game.shapeType, game.shapeRotation, game.sX, game.sY);
-							  game.Draw();
+							  	game.sX -= 1;
+							  	grid.moveShape(game.shapeType, game.shapeRotation, game.sX, game.sY);
+							  	game.Draw();
+							  }
 							  break;
 						  }
 					case 'k': {
 							  //right
-							  //ifMovementPossible() { 
+							  if(grid.isMovementPossible(game.shapeType, game.shapeRotation, game.sX+1, game.sY)) { 
 							  game.sX += 1;
+							  grid.moveShape(game.shapeType, game.shapeRotation, game.sX, game.sY);
+							  game.Draw();
+							  }
+							  break;
+						  }
+					case 'l': {
+							  //rotate
+							  //if(ismovementpossible)
+							  if(game.shapeRotation == 3)
+							  {
+								  game.shapeRotation = 0;
+							  } 
+							  else {
+								  game.shapeRotation += 1;
+							  }
 							  grid.moveShape(game.shapeType, game.shapeRotation, game.sX, game.sY);
 							  game.Draw();
 							  break;
