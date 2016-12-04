@@ -22,7 +22,7 @@ int main(int argc, char **argv) {
 	// Give game a grid to work with
 	game.g = &grid;
 
-	while(game.sY > 0)
+	while(game.sY > -1)
 	{
 		// Draw screen
 		game.Draw();
@@ -60,17 +60,22 @@ int main(int argc, char **argv) {
 							  break;
 						  }
 					case 'l': {
-							  //rotate
-							  //if(ismovementpossible)
+							  int newRotation;
 							  if(game.shapeRotation == 3)
 							  {
-								  game.shapeRotation = 0;
+								  newRotation = 0;
+							
 							  } 
 							  else {
-								  game.shapeRotation += 1;
+								  newRotation = game.shapeRotation+1;
 							  }
-							  grid.moveShape(game.shapeType, game.shapeRotation, game.sX, game.sY);
-							  game.Draw();
+							  //rotate
+							  if(grid.isMovementPossible(game.shapeType, newRotation, game.sX, game.sY)) { 
+								  game.shapeRotation = newRotation;
+								grid.moveShape(game.shapeType, game.shapeRotation, game.sX, game.sY);
+								game.Draw();
+
+							  }
 							  break;
 						  }
 					case 'q':
