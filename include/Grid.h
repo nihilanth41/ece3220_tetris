@@ -13,7 +13,8 @@ class Grid {
 		vector<vector<int>> mGrid;
 		Grid(); 
 		void addShape(int type, int rotation, int x, int y);
-		void moveShape(int type, int rotation, int oldx, int oldy, int x, int y);
+		void moveShape(int type, int rotation, int x, int y);
+		bool isMovementPossible(int type, int rotation, int x, int y);
 		Shapes shapes;
 };
 

@@ -22,7 +22,7 @@ void Grid::addShape(int type, int rotation, int x, int y) {
 	}
 }
 
-void Grid::moveShape(int type, int rotation, int oldx, int oldy, int x, int y) {
+void Grid::moveShape(int type, int rotation, int x, int y) {
 	int i1, i2;
 	int j1, j2;
 	for(int i = 0; i <GRID_WIDTH; i++){
@@ -47,5 +47,40 @@ void Grid::moveShape(int type, int rotation, int oldx, int oldy, int x, int y) {
 }
 	
 
+bool Grid::isMovementPossible(int type, int rotation, int x, int y){
 
+	for (int i1 = x, i2 = 0; i1 < x + 5; i1++, i2++)
+        {
+       		 for (int j1 = y, j2 = 0; j1 < y + 5; j1++, j2++)
+        	 {  
+            		// Check if the piece is outside the limits of the board
+          	  	if ( i1 < 0 || i1 > GRID_WIDTH  - 1 || j1 > GRID_HEIGHT - 1)
+            {
+                if (shapes.mShapes[type][rotation][i2][j2] != 0)
+                    return 0;      
+            }
+ 
+            // Check if the piece have collisioned with a block already stored in the map
+            if (j1 >= 0)
+            {
+                if ((shapes.mShapes[type][rotation][i2][j2] != 0) && (mGrid[i1][j1] != 0)){
+                    return false;
+		}
+            }
+        }
+    }
+ 
+    // No collision
+    return true;
+
+
+
+
+
+
+
+
+
+
+}
 

@@ -32,7 +32,7 @@ int main(int argc, char **argv) {
 		// Translate shape according to user input and/or sleep.
 		for(int i=0; i<5; i++)
 		{
-			grid.moveShape(game.shapeType, game.shapeRotation, game.sX, game.sY, game.sX, game.sY-1);
+			grid.moveShape(game.shapeType, game.shapeRotation, game.sX, game.sY);
 			if( _kbhit() )
 			{
 				// Get user input
@@ -44,14 +44,16 @@ int main(int argc, char **argv) {
 							  //left
 							  //ifMovementPossible() { 
 							  // maybe instead of clearing the old position we just clear the entire grid and redraw?
-							  grid.moveShape(game.shapeType, game.shapeRotation, game.sX, game.sY, game.sX--, game.sY);
+							  game.sX -= 1;
+							  grid.moveShape(game.shapeType, game.shapeRotation, game.sX, game.sY);
 							  game.Draw();
 							  break;
 						  }
 					case 'k': {
 							  //right
 							  //ifMovementPossible() { 
-							  grid.moveShape(game.shapeType, game.shapeRotation, game.sX, game.sY, game.sX++, game.sY);
+							  game.sX += 1;
+							  grid.moveShape(game.shapeType, game.shapeRotation, game.sX, game.sY);
 							  game.Draw();
 							  break;
 						  }
