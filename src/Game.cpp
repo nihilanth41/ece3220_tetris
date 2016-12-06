@@ -91,3 +91,93 @@ void Game::restoreEcho(void) {
 	// Restore terminal
 	(void) tcsetattr (fileno (stdin), TCSAFLUSH, &old_term);
 }
+
+void Game::Play(void) {
+	// Get random shape
+	init_game();
+	
+	// Initialize a Grid
+	// Add the shape to the Grid
+	Grid grid;
+	grid.addShape(shapeType, shapeRotation, sX, sY);
+
+	// Give game a grid to work with
+	g = &grid;
+
+	// Disable keyboard echo
+	disableEcho();
+	while(sY > -1)
+	{
+		// Draw screen
+		Draw();
+		// Decrement y value (if possible)
+		sY -= 1;
+		// Need some kind of isMovementPossible(), maybe inside the MoveShape() method.
+		// Translate shape according to user input and/or sleep.
+		for(int i=0; i<5; i++)
+		{
+			grid.moveShape(shapeType, shapeRotation, sX, sY);
+			if( _kbhit() )
+			{
+				// Get user input
+				char c;  
+				scanf(" %c" , &c);
+				switch(c)
+				{
+					case 'j': {
+							  //left
+							  if(grid.isMovementPossible(shapeType, shapeRotation, sX-1, sY)) { 
+							  // maybe instead of clearing the old position we just clear the entire grid and redraw?
+							  	sX -= 1;
+							  	grid.moveShape(shapeType, shapeRotation, sX, sY);
+							  	Draw();
+							  }
+							  break;
+						  }
+					case 'k': {
+							  //right
+							  if(grid.isMovementPossible(shapeType, shapeRotation, sX+1, sY)) { 
+								sX += 1;
+								grid.moveShape(shapeType, shapeRotation, sX, sY);
+								Draw();
+							  }
+							  break;
+						  }
+					case 'l': {
+							  int newRotation;
+							  if(shapeRotation == 3)
+							  {
+								  newRotation = 0;
+							
+							  } 
+							  else {
+								  newRotation = shapeRotation+1;
+							  }
+							  //rotate
+							  if(grid.isMovementPossible(shapeType, newRotation, sX, sY)) { 
+								shapeRotation = newRotation;
+								grid.moveShape(shapeType, shapeRotation, sX, sY);
+								Draw();
+							  }
+							  break;
+						  }
+					case 'q':
+					case 'Q': {
+							  // Clear screen
+							  // From http://stackoverflow.com/a/7660837
+							  printf("\e[1;1H\e[2J");
+							  // Restore terminal
+							  restoreEcho();
+							  exit(0);
+						  }
+					default: break;
+				}
+			}
+			// 200ms * 5 = 1 sec
+			usleep(200000);
+		}
+
+	}
+	restoreEcho();
+
+}

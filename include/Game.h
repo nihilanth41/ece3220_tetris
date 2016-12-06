@@ -8,6 +8,8 @@ class Game {
 	public: 
 		Game();
 		Grid *g;
+		// Main loop
+		void Play();
 		// Draw grid to screen
 		void Draw();
 		// Setup RNG, Init Random Shape
