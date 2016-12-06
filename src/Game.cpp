@@ -38,7 +38,7 @@ void Game::Draw(void) {
 				cout<<buf;
 			}
 			else if(g->mGrid[i][j] == 3){
-				sprintf(buf, "%s %d %s", "\033[48:2:255:165:0m", g->mGrid[i][j], "\033[m");
+				sprintf(buf, "%s %d %s", ANSI_COLOR_WHITE, g->mGrid[i][j], ANSI_COLOR_RESET);
 				cout<<buf;
 			}
 			else if(g->mGrid[i][j] == 4){
@@ -58,7 +58,7 @@ void Game::Draw(void) {
 				cout<<buf;
 			}
 			else if(g->mGrid[i][j] == 0){
-				cout<<" "<<g->mGrid[i][j]<<" ";
+				cout << "   "; 
 			}
 	
 			
