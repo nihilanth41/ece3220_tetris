@@ -8,6 +8,18 @@
 using namespace std;
 
 int main(int argc, char **argv) {
+
+	/* Turn echoing off and fail if we can’t. */
+	struct termios old_term, new_term;
+	int nread;
+	FILE *stream = stdin;
+	if (tcgetattr (fileno (stream), &old_term) != 0)
+		return -1;
+	new_term = old_term;
+	new_term.c_lflag &= ~ECHO;
+	
+	if (tcsetattr (fileno (stream), TCSAFLUSH, &new_term) != 0)
+		return -1;
 	
 	// Initialize Game object 
 	Game game;
@@ -83,6 +95,8 @@ int main(int argc, char **argv) {
 							  // Clear screen
 							  // From http://stackoverflow.com/a/7660837
 							  printf("\e[1;1H\e[2J");
+							  // Restore terminal
+							  (void) tcsetattr (fileno (stream), TCSAFLUSH, &old_term);
 							  exit(0);
 						  }
 					default: break;
@@ -92,6 +106,8 @@ int main(int argc, char **argv) {
 			usleep(200000);
 		}
 	}
+	// Restore terminal
+	(void) tcsetattr (fileno (stream), TCSAFLUSH, &old_term);
 
 	return 0;
 } 
