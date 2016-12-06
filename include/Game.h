@@ -17,6 +17,10 @@ class Game {
 		int shapeRotation;
 		// Coordinates for shape
 		int sX, sY;
+		void mainMenu();
+		//user selection from main menu
+		int selection;
+				
 };
 
 

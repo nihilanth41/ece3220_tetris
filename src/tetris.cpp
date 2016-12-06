@@ -7,12 +7,33 @@
 
 using namespace std;
 
-int main(int argc, char **argv) {
+void selectionHandler(int selection);
 
+int main(int argc, char **argv) {
+	FILE* highscores;
+	vector<int> scores;
+	int temp;
+	
 	/* Turn echoing off and fail if we can’t. */
 	struct termios old_term, new_term;
 	int nread;
 	FILE *stream = stdin;
+
+
+
+
+	// Initialize Game object 
+	Game game;
+	game.mainMenu();
+	cin>>game.selection;
+	
+
+	if(game.selection == 1){
+	
+
+	// Get random shape
+	game.init_game();
+	
 	if (tcgetattr (fileno (stream), &old_term) != 0)
 		return -1;
 	new_term = old_term;
@@ -21,11 +42,6 @@ int main(int argc, char **argv) {
 	if (tcsetattr (fileno (stream), TCSAFLUSH, &new_term) != 0)
 		return -1;
 	
-	// Initialize Game object 
-	Game game;
-	// Get random shape
-	game.init_game();
-
 	// Initialize a Grid
 	// Add the shape to the Grid
 	Grid grid;
@@ -106,9 +122,52 @@ int main(int argc, char **argv) {
 			usleep(200000);
 		}
 	}
+	
+
+	}
+	
+	if(game.selection == 2){
+		highscores = fopen("HighScores.txt", "r");
+		if(highscores == NULL){
+			cout<<"Error viewing highscores"<<endl;
+			return -1;
+		}
+		
+		for(int i = 0; i<5; i++){
+			fscanf(highscores, "%d", &temp);
+			cout<<temp<<endl;
+
+		}
+
+		fclose(highscores);
+		
+	}
+
+	if(game.selection == 3){
+
+
+	}
+	if(game.selection == 4){
+
+		cout<<"Terminating Game..."<<endl<<endl;
+		return 0;
+
+	}
+
 	// Restore terminal
 	(void) tcsetattr (fileno (stream), TCSAFLUSH, &old_term);
 
 	return 0;
 } 
+
+
+
+
+
+
+
+
+
+
+
 

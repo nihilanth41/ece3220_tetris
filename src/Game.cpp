@@ -70,5 +70,12 @@ void Game::Draw(void) {
 	printf("\033[20A");
 }
 
+void Game::mainMenu(){
 
+	cout<<"Main Menu"<<endl<<"Select one of the following:"<<endl;
+	cout<<"1 Play Game"<<endl;
+	cout<<"2 High Score"<<endl;
+	cout<<"3 Settings"<<endl;
+	cout<<"4 Quit"<<endl;
+}
 
