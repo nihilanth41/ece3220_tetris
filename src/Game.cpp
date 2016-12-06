@@ -79,3 +79,15 @@ void Game::mainMenu(){
 	cout<<"4 Quit"<<endl;
 }
 
+void Game::disableEcho(void) {
+	/* Turn echoing off and fail silently if we can’t. */
+	tcgetattr(fileno (stdin), &old_term);
+	new_term = old_term;
+	new_term.c_lflag &= ~ECHO;
+	tcsetattr (fileno (stdin), TCSAFLUSH, &new_term);
+}
+
+void Game::restoreEcho(void) {
+	// Restore terminal
+	(void) tcsetattr (fileno (stdin), TCSAFLUSH, &old_term);
+}

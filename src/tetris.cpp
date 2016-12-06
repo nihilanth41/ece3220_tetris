@@ -12,15 +12,7 @@ void selectionHandler(int selection);
 int main(int argc, char **argv) {
 	FILE* highscores;
 	vector<int> scores;
-	int temp;
-	
-	/* Turn echoing off and fail if we can’t. */
-	struct termios old_term, new_term;
-	int nread;
-	FILE *stream = stdin;
-
-
-
+	int temp;	
 
 	// Initialize Game object 
 	Game game;
@@ -30,17 +22,8 @@ int main(int argc, char **argv) {
 
 	if(game.selection == 1){
 	
-
 	// Get random shape
 	game.init_game();
-	
-	if (tcgetattr (fileno (stream), &old_term) != 0)
-		return -1;
-	new_term = old_term;
-	new_term.c_lflag &= ~ECHO;
-	
-	if (tcsetattr (fileno (stream), TCSAFLUSH, &new_term) != 0)
-		return -1;
 	
 	// Initialize a Grid
 	// Add the shape to the Grid
@@ -52,6 +35,8 @@ int main(int argc, char **argv) {
 
 	while(game.sY > -1)
 	{
+		// Disable keyboard echo
+		game.disableEcho();
 		// Draw screen
 		game.Draw();
 		// Decrement y value (if possible)
@@ -112,7 +97,7 @@ int main(int argc, char **argv) {
 							  // From http://stackoverflow.com/a/7660837
 							  printf("\e[1;1H\e[2J");
 							  // Restore terminal
-							  (void) tcsetattr (fileno (stream), TCSAFLUSH, &old_term);
+							  game.restoreEcho();
 							  exit(0);
 						  }
 					default: break;
@@ -122,9 +107,9 @@ int main(int argc, char **argv) {
 			usleep(200000);
 		}
 	}
-	
+}
 
-	}
+game.restoreEcho();
 	
 	if(game.selection == 2){
 		highscores = fopen("HighScores.txt", "r");
@@ -154,8 +139,7 @@ int main(int argc, char **argv) {
 
 	}
 
-	// Restore terminal
-	(void) tcsetattr (fileno (stream), TCSAFLUSH, &old_term);
+
 
 	return 0;
 } 

@@ -20,6 +20,14 @@ class Game {
 		void mainMenu();
 		//user selection from main menu
 		int selection;
+		// For keyboard echo in terminal
+		void disableEcho();
+		void restoreEcho();
+	private:
+		// For disabling keyboard echo
+		struct termios old_term, new_term;
+		int nread;
+
 				
 };
 
