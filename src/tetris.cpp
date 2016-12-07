@@ -37,6 +37,7 @@ int main(int argc, char **argv) {
 		fclose(highscores);
 	}
 	if(game.selection == 3){
+		//settings
 
 	}
 	if(game.selection == 4){

@@ -60,18 +60,13 @@ void Game::Draw(void) {
 			else if(g->mGrid[i][j] == 0){
 				cout << "   "; 
 			}
-	
-			
-
-			
 		}
 		cout << "]" << endl;
 	}
 	printf("\033[20A");
 }
 
-void Game::mainMenu(){
-
+void Game::mainMenu() {
 	cout<<"Main Menu"<<endl<<"Select one of the following:"<<endl;
 	cout<<"1 Play Game"<<endl;
 	cout<<"2 High Score"<<endl;
@@ -93,6 +88,7 @@ void Game::restoreEcho(void) {
 }
 
 void Game::Play(void) {
+while(1) {
 	// Get random shape
 	init_game();
 	
@@ -105,7 +101,7 @@ void Game::Play(void) {
 	g = &grid;
 
 	// Disable keyboard echo
-	disableEcho();
+	//disableEcho();
 	while(sY > -1)
 	{
 		// Draw screen
@@ -167,17 +163,17 @@ void Game::Play(void) {
 							  // From http://stackoverflow.com/a/7660837
 							  printf("\e[1;1H\e[2J");
 							  // Restore terminal
-							  restoreEcho();
+							  //restoreEcho();
 							  exit(0);
 						  }
 					default: break;
 				}
 			}
 			// 200ms * 5 = 1 sec
-			usleep(200000);
+			usleep(100000);
 		}
 
 	}
-	restoreEcho();
-
+	//restoreEcho();
+	} 
 }
