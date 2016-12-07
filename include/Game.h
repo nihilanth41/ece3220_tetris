@@ -24,15 +24,25 @@ class Game {
 		int selection;
 
 		//Stores score value
-		int score;
+		int currentScore;
+		
+		vector<int> highScores;
+		//compare score to high scores after game is quit
+		void loadScores();
+		
 		// For keyboard echo in terminal
 		void disableEcho();
 		void restoreEcho();
+
+		void printScores();
 	private:
 		// For disabling keyboard echo
 		struct termios old_term, new_term;
 		int nread;
+		//opens high scores file if it exists
+		void getScores();
 
+		void saveScore(int);
 				
 };
 

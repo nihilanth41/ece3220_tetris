@@ -9,7 +9,8 @@
 using namespace std;
 
 Game::Game() {
-	score = 0;
+	currentScore = 0;
+	loadScores();
 }
 
 
@@ -27,9 +28,8 @@ void Game::init_game(void) {
 }
 
 void Game::Draw(void) {
-	
-	cout<<"High Score: "<<score<<endl;
-
+	cout << "\r";
+	cout<<"Score: "<< currentScore << endl;
 	for(int j=20; j--;)
 	{
 		cout << "[";
@@ -168,7 +168,10 @@ while(1) {
 					case 'Q': {
 							  // Clear screen
 							  // From http://stackoverflow.com/a/7660837
-							  printf("\e[1;1H\e[2J");
+							  printf("\e[1;1H\e[2J");	
+							  // Save to file if high score
+							  saveScore(currentScore);
+							  printScores();
 							  // Restore terminal
 							  //restoreEcho();
 							  exit(0);
@@ -178,10 +181,59 @@ while(1) {
 			}
 			// 200ms * 5 = 1 sec
 			usleep(100000);
-			score++;	
+			currentScore++;	
 		}
 			
 	}
 	//restoreEcho();
 	} 
 }
+
+
+void Game::loadScores(){
+	int temp;	
+	FILE* fp = fopen("HighScores.txt", "r");
+		if(fp == NULL){
+			cout<<"Error viewing highscores"<<endl;
+			exit(-1);
+		}
+		
+		for(int i = 0; i<5; i++){
+			fscanf(fp, "%d", &temp);
+			highScores.push_back(temp);
+		}
+		fclose(fp);
+
+}
+
+void Game::printScores(void) {
+	cout << "\n -- High Scores --" << endl;
+	cout << "Position Score" << endl;
+	for(int i=0; i<5; i++)
+	{	
+		cout << i+1 << "\t " << highScores[i] << endl;
+	}
+}
+
+void Game::saveScore(int score) {
+	// Check if score is > any of the top five scores and save if true
+	// Check highest first
+	for(int i=0; i<5; i++)
+	{	
+		if(score > highScores[i])		
+		{ 
+			cout << "New high score!" << endl;
+			cout << "Position: " << i+1 << endl;
+			cout << "Score: " << currentScore << endl;
+			highScores[i] = score;
+			// Overwrite file 
+			FILE *fp_w = fopen("HighScores.txt", "w");
+			if(fp_w != NULL)
+			{
+				for(int j=0; j<5; j++)
+				{	
+					fprintf(fp_w, "%d\n", highScores[j]);
+				}
+				fclose(fp_w); } break; } }
+}
+			

@@ -24,17 +24,9 @@ int main(int argc, char **argv) {
 		game.Play();
 	}
 	if(game.selection == 2){
-		highscores = fopen("HighScores.txt", "r");
-		if(highscores == NULL){
-			cout<<"Error viewing highscores"<<endl;
-			return -1;
-		}
-		
-		for(int i = 0; i<5; i++){
-			fscanf(highscores, "%d", &temp);
-			cout<<temp<<endl;
-		}
-		fclose(highscores);
+		// Print scores
+		game.printScores();
+
 	}
 	if(game.selection == 3){
 		//settings
