@@ -22,6 +22,9 @@ class Game {
 		void mainMenu();
 		//user selection from main menu
 		int selection;
+
+		//Stores score value
+		int score;
 		// For keyboard echo in terminal
 		void disableEcho();
 		void restoreEcho();

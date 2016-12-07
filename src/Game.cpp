@@ -3,12 +3,15 @@
 #include <cstring>
 #include <cstdlib>
 #include <time.h>
+#include <unistd.h>
 #include <iostream>
 #include "Colors.h"
 using namespace std;
 
 Game::Game() {
+	score = 0;
 }
+
 
 void Game::init_game(void) { 
 	// Setup RNG
@@ -20,9 +23,13 @@ void Game::init_game(void) {
 	// Set initial position of shape
 	sX = 4;
 	sY = 14;
+
 }
 
 void Game::Draw(void) {
+	
+	cout<<"High Score: "<<score<<endl;
+
 	for(int j=20; j--;)
 	{
 		cout << "[";
@@ -63,7 +70,7 @@ void Game::Draw(void) {
 		}
 		cout << "]" << endl;
 	}
-	printf("\033[20A");
+	printf("\033[21A");
 }
 
 void Game::mainMenu() {
@@ -171,8 +178,9 @@ while(1) {
 			}
 			// 200ms * 5 = 1 sec
 			usleep(100000);
+			score++;	
 		}
-
+			
 	}
 	//restoreEcho();
 	} 
