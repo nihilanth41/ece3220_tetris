@@ -7,7 +7,6 @@
 
 using namespace std;
 
-void selectionHandler(int selection);
 
 int main(int argc, char **argv) {
 	FILE* highscores;
@@ -17,22 +16,37 @@ int main(int argc, char **argv) {
 	// Initialize Game object 
 	Game game;
 	game.mainMenu();
-	cin>>game.selection;
+	cin>>game.menuSelection;
 	
 
-	if(game.selection == 1){
+	if(game.menuSelection == 1){
 		game.Play();
 	}
-	if(game.selection == 2){
+	if(game.menuSelection == 2){
 		// Print scores
 		game.printScores();
 
 	}
-	if(game.selection == 3){
-		//settings
+	if(game.menuSelection == 3){
+		game.settings();
+		cin>>game.settingsSelection;
 
+		if(game.settingsSelection == 1){
+
+			cout<<"WARNING ABOUT TO CLEAR HIGH SCORES..."<<endl;
+			game.clearScores();
+		}
+
+		if(game.settingsSelection == 2){
+				
+
+		}
+
+		if(game.settingsSelection == 3){
+
+		}
 	}
-	if(game.selection == 4){
+	if(game.menuSelection == 4){
 
 		cout<<"Terminating Game..."<<endl<<endl;
 		return 0;

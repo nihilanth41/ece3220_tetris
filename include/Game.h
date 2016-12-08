@@ -20,20 +20,23 @@ class Game {
 		// Coordinates for shape
 		int sX, sY;
 		void mainMenu();
+		void settings();
 		//user selection from main menu
-		int selection;
-
+		int menuSelection;
+		//user selection from settings
+		int settingsSelection;
 		//Stores score value
 		int currentScore;
 		
 		vector<int> highScores;
 		//compare score to high scores after game is quit
 		void loadScores();
-		
+		//reset high scores
+		void clearScores();		
 		// For keyboard echo in terminal
 		void disableEcho();
 		void restoreEcho();
-
+		int speed;
 		void printScores();
 	private:
 		// For disabling keyboard echo

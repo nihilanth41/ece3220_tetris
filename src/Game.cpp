@@ -11,6 +11,7 @@ using namespace std;
 Game::Game() {
 	currentScore = 0;
 	loadScores();
+	speed = 100000;
 }
 
 
@@ -180,7 +181,7 @@ while(1) {
 				}
 			}
 			// 200ms * 5 = 1 sec
-			usleep(100000);
+			usleep(speed);
 			currentScore++;	
 		}
 			
@@ -237,3 +238,31 @@ void Game::saveScore(int score) {
 				fclose(fp_w); } break; } }
 }
 			
+void Game::settings() {
+	cout<<"Settings"<<endl<<"Select one of the following:"<<endl;
+	cout<<"1 Clear High Scores"<<endl;
+	cout<<"2 Change Game Speed"<<endl;
+	cout<<"3 Quit"<<endl;
+}
+
+void Game::clearScores(){
+
+	for(int i=0; i<5; i++)
+	{	
+		
+			highScores[i] = 0;
+			// Overwrite file 
+			FILE *fp_w = fopen("HighScores.txt", "w");
+			if(fp_w != NULL)
+			{
+				for(int j=0; j<5; j++)
+				{	
+					fprintf(fp_w, "%d\n", highScores[j]);
+				}
+			 fclose(fp_w); 
+			}  
+	} 
+
+}
+
+
