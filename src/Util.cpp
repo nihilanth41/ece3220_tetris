@@ -1,5 +1,7 @@
 #include "Util.h"
+#include <iostream>
 
+using namespace std;
 /**
  Linux (POSIX) implementation of _kbhit().
  Morgan McGuire, morgan@cs.brown.edu
@@ -23,3 +25,12 @@ int _kbhit() {
     return bytesWaiting;
 }
 
+void clearScreen(int x){
+
+	for(int i = 0; i < x; i++){
+
+		cout<<endl;
+
+	}
+
+}

@@ -241,8 +241,7 @@ void Game::saveScore(int score) {
 void Game::settings() {
 	cout<<"Settings"<<endl<<"Select one of the following:"<<endl;
 	cout<<"1 Clear High Scores"<<endl;
-	cout<<"2 Change Game Speed"<<endl;
-	cout<<"3 Quit"<<endl;
+	cout<<"2 Quit"<<endl;
 }
 
 void Game::clearScores(){

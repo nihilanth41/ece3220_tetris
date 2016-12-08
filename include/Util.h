@@ -8,5 +8,5 @@
 //#include <stropts.h>
 
 int _kbhit(void);
-
+void clearScreen(int x);
 #endif
