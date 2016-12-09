@@ -9,4 +9,6 @@
 
 int _kbhit(void);
 void clearScreen(int x);
+//int settings;
+
 #endif

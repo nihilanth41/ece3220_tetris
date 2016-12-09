@@ -95,7 +95,10 @@ void Game::restoreEcho(void) {
 	(void) tcsetattr (fileno (stdin), TCSAFLUSH, &old_term);
 }
 
-void Game::Play(void) {
+void Game::Play(int speedVal) {
+
+speed = speedVal;
+
 while(1) {
 	// Get random shape
 	init_game();
@@ -241,7 +244,13 @@ void Game::saveScore(int score) {
 void Game::settings() {
 	cout<<"Settings"<<endl<<"Select one of the following:"<<endl;
 	cout<<"1 Clear High Scores"<<endl;
-	cout<<"2 Quit"<<endl;
+	cout<<"2 Increase Speed"<<endl;
+	cout<<"3 Decrease Speed"<<endl;
+	cout<<"4 Default Speed"<<endl;
+	cout<<"5 30x50 Grid"<<endl;
+	cout<<"6 20x30 Grid"<<endl;
+	cout<<"5 Back"<<endl;
+	cout<<"6 Quit"<<endl;
 }
 
 void Game::clearScores(){
