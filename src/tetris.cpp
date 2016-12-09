@@ -30,6 +30,9 @@ int main(int argc, char **argv) {
 	int temp;
 	bool gameOn = true;	
 	int speedValue = 100000;
+	int gridWidth = GRID_WIDTH;
+	int gridHeight = GRID_HEIGHT;
+	
 	// Initialize Game object 
 	Game game;
 	while(gameOn != false){
@@ -43,7 +46,7 @@ int main(int argc, char **argv) {
 	if(game.menuSelection == 1){
 		clearScreen(20);
 		cout<<"J = Left\tK = Right\tL = Rotate\tQ = Quit"<<endl<<endl;
-		game.Play(speedValue);
+		game.Play(speedValue, gridWidth, gridHeight);
 	}
 	if(game.menuSelection == 2){
 		// Print scores
@@ -79,13 +82,22 @@ int main(int argc, char **argv) {
 
 		if(game.settingsSelection == 5){
 				
-			
-		}
-		if(game.settingsSelection == 6){
-				
-			gameOn = false;
+			gridWidth = 30;
+			gridHeight = 50;
 		}
 
+		if(game.settingsSelection == 6){
+			gridWidth = 20;
+			gridHeight = 30;		
+
+		}
+
+		if(game.settingsSelection == 7){
+
+		}
+		if(game.settingsSelection == 8){
+			gameOn = false;
+		}
 	}
 	if(game.menuSelection == 4){
 

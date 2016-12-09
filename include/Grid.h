@@ -11,7 +11,7 @@ using namespace std;
 class Grid { 
 	public:
 		vector<vector<int>> mGrid;
-		Grid(); 
+		Grid(int x, int y); 
 		void addShape(int type, int rotation, int x, int y);
 		void moveShape(int type, int rotation, int x, int y);
 		bool isMovementPossible(int type, int rotation, int x, int y);

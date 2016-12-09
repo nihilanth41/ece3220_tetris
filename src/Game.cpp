@@ -95,7 +95,7 @@ void Game::restoreEcho(void) {
 	(void) tcsetattr (fileno (stdin), TCSAFLUSH, &old_term);
 }
 
-void Game::Play(int speedVal) {
+void Game::Play(int speedVal, int x, int y) {
 
 speed = speedVal;
 
@@ -105,7 +105,7 @@ while(1) {
 	
 	// Initialize a Grid
 	// Add the shape to the Grid
-	Grid grid;
+	Grid grid(x,y);
 	grid.addShape(shapeType, shapeRotation, sX, sY);
 
 	// Give game a grid to work with
@@ -249,8 +249,8 @@ void Game::settings() {
 	cout<<"4 Default Speed"<<endl;
 	cout<<"5 30x50 Grid"<<endl;
 	cout<<"6 20x30 Grid"<<endl;
-	cout<<"5 Back"<<endl;
-	cout<<"6 Quit"<<endl;
+	cout<<"7 Back"<<endl;
+	cout<<"8 Quit"<<endl;
 }
 
 void Game::clearScores(){

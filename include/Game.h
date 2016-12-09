@@ -9,7 +9,7 @@ class Game {
 		Game();
 		Grid *g;
 		// Main loop
-		void Play(int speedVal);
+		void Play(int speedVal, int x, int y);
 		// Draw grid to screen
 		void Draw();
 		// Setup RNG, Init Random Shape
