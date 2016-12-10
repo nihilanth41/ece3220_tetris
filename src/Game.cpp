@@ -113,7 +113,7 @@ while(1) {
 
 	// Disable keyboard echo
 	//disableEcho();
-	while(sY > -1)
+	while(sY > 1)
 	{
 		// Draw screen
 		Draw();
