@@ -3,9 +3,9 @@
 #include <unistd.h>
 #include <cstdio>
 
-Grid::Grid(int x, int y) {
+Grid::Grid() {
 	// Initalize Grid to 0
-	mGrid.resize(x, vector<int>(y, 0));
+	mGrid.resize(GRID_WIDTH, vector<int>(GRID_HEIGHT, 0));
 }
 
 void Grid::addShape(int type, int rotation, int x, int y) {
